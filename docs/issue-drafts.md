@@ -13,3 +13,5 @@ Title: `Need hold-state transitions when cohorts stop adding but do not reverse`
 
 Body:
 Right now Chorus is biased toward buy or sell snapshots. In practice the highest-value signal is sometimes that funds stop buying while makers keep inventory balanced. We need an explicit hold / fade transition model.
+
+Backlog note: both issues should be replayed on mixed-cohort rotations before changing live thresholds.

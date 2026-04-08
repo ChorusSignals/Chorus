@@ -10,3 +10,5 @@
 8. `docs(readme): add technical spec for cohort bonuses and tier weights`
 9. `design(svg): add consensus map and feed visuals`
 10. `chore(audit): add issue drafts and commit notes`
+
+Operational note: keep cohort model changes separate from wallet-list edits so the signal history stays believable.
