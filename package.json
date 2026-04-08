@@ -1,7 +1,7 @@
 {
   "name": "chorus",
   "version": "1.0.1",
-  "description": "Multi-wallet consensus signal aggregator for Solana. Finds what smart money agrees on.",
+  "description": "Solana cohort-consensus tracker that separates makers, funds, teams, and traders",
   "license": "MIT",
   "repository": {
     "type": "git",
