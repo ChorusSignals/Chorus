@@ -11,12 +11,12 @@ import { logger } from "../lib/logger.js";
 const TOOLS: Anthropic.Tool[] = [
   {
     name: "fetch_wallet_signals",
-    description: "Fetch recent swap activity for all tracked smart-money wallets.",
+    description: "Fetch recent swap activity for all tracked wallets.",
     input_schema: { type: "object" as const, properties: {}, required: [] },
   },
   {
     name: "compute_consensus",
-    description: "Aggregate wallet signals and compute directional consensus scores per token.",
+    description: "Aggregate wallet signals and compute cohort-aware consensus scores per token.",
     input_schema: { type: "object" as const, properties: {}, required: [] },
   },
   {
@@ -25,8 +25,8 @@ const TOOLS: Anthropic.Tool[] = [
     input_schema: {
       type: "object" as const,
       properties: {
-        min_score: { type: "number", description: "Minimum consensus score 0-1" },
-        min_wallets: { type: "number", description: "Minimum wallets agreeing" },
+        min_score: { type: "number" },
+        min_wallets: { type: "number" },
       },
       required: [],
     },
@@ -40,9 +40,8 @@ const TOOLS: Anthropic.Tool[] = [
 
 export async function runAgentLoop(config: Config): Promise<void> {
   const client = new Anthropic({ apiKey: config.ANTHROPIC_API_KEY });
-  logger.info("Fetching smart-money signals...");
+  logger.info("Fetching cohort signals...");
 
-  const allRaw: Anthropic.MessageParam[] = [];
   let rawSignals: ReturnType<typeof buildConsensusSignals> = [];
   let allSignals: ConsensusSignal[] = [];
 
@@ -50,11 +49,7 @@ export async function runAgentLoop(config: Config): Promise<void> {
     { role: "user", content: buildUserPrompt(allSignals) },
   ];
 
-  let iterations = 0;
-  const MAX_ITER = 8;
-
-  while (iterations < MAX_ITER) {
-    iterations++;
+  for (let iteration = 0; iteration < 8; iteration++) {
     const response = await client.messages.create({
       model: "claude-opus-4-6",
       max_tokens: 4096,
@@ -67,8 +62,8 @@ export async function runAgentLoop(config: Config): Promise<void> {
 
     if (response.stop_reason === "end_turn") {
       const text = response.content
-        .filter((b): b is Anthropic.TextBlock => b.type === "text")
-        .map((b) => b.text)
+        .filter((block): block is Anthropic.TextBlock => block.type === "text")
+        .map((block) => block.text)
         .join("\n");
       if (text) console.log("\n" + text);
       if (allSignals.length > 0) printDigest(allSignals);
@@ -84,7 +79,7 @@ export async function runAgentLoop(config: Config): Promise<void> {
 
       if (block.name === "fetch_wallet_signals") {
         const fetches = await Promise.all(
-          TRACKED_WALLETS.map((w) => fetchWalletSignals(w.address, w.label, config.HELIUS_API_KEY))
+          TRACKED_WALLETS.map((wallet) => fetchWalletSignals(wallet.address, wallet.label, wallet.cohort, config.HELIUS_API_KEY))
         );
         const flat = fetches.flat();
         rawSignals = flat as unknown as ReturnType<typeof buildConsensusSignals>;
@@ -96,14 +91,14 @@ export async function runAgentLoop(config: Config): Promise<void> {
       } else if (block.name === "rank_signals") {
         const input = block.input as { min_score?: number; min_wallets?: number };
         const filtered = allSignals
-          .filter((s) => s.consensusScore >= (input.min_score ?? config.MIN_CONSENSUS_SCORE))
-          .filter((s) => s.walletsAgreeing >= (input.min_wallets ?? config.MIN_WALLETS_AGREEING))
-          .sort((a, b) => b.consensusScore - a.consensusScore);
+          .filter((signal) => signal.consensusScore >= (input.min_score ?? config.MIN_CONSENSUS_SCORE))
+          .filter((signal) => signal.walletsAgreeing >= (input.min_wallets ?? config.MIN_WALLETS_AGREEING))
+          .sort((left, right) => right.consensusScore - left.consensusScore);
         result = JSON.stringify(filtered);
       } else if (block.name === "format_digest") {
         result = JSON.stringify({
           signals: allSignals,
-          summary: `${allSignals.length} consensus signals across ${new Set(allSignals.map((s) => s.token)).size} tokens`,
+          summary: `${allSignals.length} signals across ${new Set(allSignals.map((signal) => signal.token)).size} tokens`,
         });
       } else {
         result = JSON.stringify({ error: `Unknown tool: ${block.name}` });

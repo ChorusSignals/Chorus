@@ -2,6 +2,15 @@
   "name": "chorus",
   "version": "1.0.0",
   "description": "Multi-wallet consensus signal aggregator for Solana. Finds what smart money agrees on.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChorusSignals/Chorus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChorusSignals/Chorus/issues"
+  },
+  "homepage": "https://github.com/ChorusSignals/Chorus#readme",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {

@@ -1,34 +1,28 @@
 import type { ConsensusSignal } from "../lib/types.js";
 
 export function buildSystemPrompt(): string {
-  return `You are Chorus, a smart-money consensus analyst for Solana.
+  return `You are Chorus, a cohort-consensus analyst for Solana.
 
-You track the on-chain activity of a curated list of high-performing wallets — market makers, protocol teams, and proven traders — and identify when multiple wallets converge on the same trade. That convergence is the signal.
+You do not treat all wallets equally. Market makers, funds, teams, and traders mean different things. A signal is stronger when multiple cohorts align on the same token and direction.
 
-You have access to these tools:
-- fetch_wallet_signals: Pull recent swap activity for all tracked wallets
-- compute_consensus: Aggregate signals and score directional agreement
-- rank_signals: Sort consensus signals by strength and confidence
-- format_digest: Output a structured summary of the current consensus state
-
-Be direct. When wallets agree, say what they're doing and why it might matter. Don't over-interpret noise.`;
+Explain:
+- who is buying or selling
+- whether the agreement is cross-cohort or just one pocket of the market
+- what would break the consensus`;
 }
 
 export function buildUserPrompt(signals: ConsensusSignal[]): string {
   if (signals.length === 0) {
-    return "No consensus signals detected in the latest scan. Summarize market conditions and note if wallet activity is unusually quiet.";
+    return "No cohort-consensus signals detected in the latest scan. Summarize whether the market looks fragmented or quiet.";
   }
 
   const overview = signals
-    .map(
-      (s) =>
-        `- [${s.strength.toUpperCase()}] ${s.token} ${s.direction.toUpperCase()}: ${s.walletsAgreeing}/${s.totalWalletsTracked} wallets agree (score: ${(s.consensusScore * 100).toFixed(0)}%)`
-    )
+    .map((signal) => `- [${signal.strength.toUpperCase()}] ${signal.token} ${signal.direction.toUpperCase()}: ${signal.walletsAgreeing}/${signal.totalWalletsTracked} wallets agree across ${signal.cohortCount} cohorts (score ${(signal.consensusScore * 100).toFixed(0)}%)`)
     .join("\n");
 
-  return `Current consensus scan found ${signals.length} signal${signals.length > 1 ? "s" : ""}:
+  return `Current scan found ${signals.length} consensus signal${signals.length > 1 ? "s" : ""}:
 
 ${overview}
 
-For each signal: explain what the wallets are likely positioning for, assess conviction level, and flag any risks or counter-signals. Rank by actionability.`;
+For each signal, explain whether this is broad conviction or one cohort dragging the score.`;
 }

@@ -1,107 +1,26 @@
-<svg width="900" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
-  <defs>
-    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#0a0a1a;stop-opacity:0"/>
-    </radialGradient>
-    <radialGradient id="nodePurple" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#4c1d95;stop-opacity:1"/>
-    </radialGradient>
-    <radialGradient id="nodeBlue" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1"/>
-    </radialGradient>
-    <radialGradient id="nodeGreen" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#059669;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#064e3b;stop-opacity:1"/>
-    </radialGradient>
-    <filter id="glow4">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-
-  <!-- Background -->
-  <rect width="900" height="500" fill="#0a0a1a"/>
-
-  <!-- Center radial glow -->
-  <ellipse cx="450" cy="250" rx="220" ry="180" fill="url(#centerGlow)"/>
-
-  <!-- Title bar -->
-  <text x="30" y="42" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#a78bfa" filter="url(#glow4)">CHORUS</text>
-  <text x="120" y="42" font-family="'Courier New', monospace" font-size="12" fill="#ffffff40">/ consensus signal map</text>
-  <circle cx="850" cy="36" r="5" fill="#4ade80" filter="url(#softGlow)"/>
-  <text x="840" y="40" font-family="'Courier New', monospace" font-size="10" fill="#4ade80" text-anchor="end">LIVE</text>
-
-  <line x1="30" y1="56" x2="870" y2="56" stroke="#ffffff0a" stroke-width="1"/>
-
-  <!-- Center token node: JUP -->
-  <circle cx="450" cy="250" r="52" fill="#0a0a1a" stroke="#a78bfa" stroke-width="2" filter="url(#glow4)"/>
-  <circle cx="450" cy="250" r="46" fill="#0a0a1a" stroke="#7c3aed40" stroke-width="1"/>
-  <text x="450" y="243" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#a78bfa" text-anchor="middle" filter="url(#softGlow)">JUP</text>
-  <text x="450" y="262" font-family="'Courier New', monospace" font-size="10" fill="#ffffff60" text-anchor="middle">BUY SIGNAL</text>
-  <text x="450" y="278" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#4ade80" text-anchor="middle" filter="url(#softGlow)">82%</text>
-
-  <!-- Wallet node 1: Jump Trading (top left) -->
-  <line x1="270" y1="155" x2="402" y2="218" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-  <circle cx="245" cy="142" r="34" fill="url(#nodePurple)" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="245" y="137" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">JUMP</text>
-  <text x="245" y="151" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">TRADING</text>
-  <text x="245" y="164" font-family="'Courier New', monospace" font-size="8" fill="#4ade80" text-anchor="middle">BUY $42k</text>
-
-  <!-- Wallet node 2: Wintermute (top right) -->
-  <line x1="632" y1="152" x2="499" y2="216" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-  <circle cx="658" cy="140" r="34" fill="url(#nodeBlue)" stroke="#60a5fa" stroke-width="1.5"/>
-  <text x="658" y="135" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">WINTER</text>
-  <text x="658" y="149" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">MUTE</text>
-  <text x="658" y="162" font-family="'Courier New', monospace" font-size="8" fill="#4ade80" text-anchor="middle">BUY $38k</text>
-
-  <!-- Wallet node 3: Multicoin (left) -->
-  <line x1="185" y1="250" x2="396" y2="250" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-  <circle cx="155" cy="250" r="34" fill="url(#nodePurple)" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="155" y="245" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">MULTI</text>
-  <text x="155" y="259" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">COIN LP</text>
-  <text x="155" y="272" font-family="'Courier New', monospace" font-size="8" fill="#4ade80" text-anchor="middle">BUY $18k</text>
-
-  <!-- Wallet node 4: Mango Whale (right) -->
-  <line x1="716" y1="250" x2="504" y2="250" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-  <circle cx="747" cy="250" r="34" fill="url(#nodeBlue)" stroke="#60a5fa" stroke-width="1.5"/>
-  <text x="747" y="245" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">MANGO</text>
-  <text x="747" y="259" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">WHALE A</text>
-  <text x="747" y="272" font-family="'Courier New', monospace" font-size="8" fill="#4ade80" text-anchor="middle">BUY $22k</text>
-
-  <!-- Wallet node 5: Sol Foundation (bottom left) -->
-  <line x1="268" y1="348" x2="403" y2="283" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-  <circle cx="244" cy="362" r="34" fill="url(#nodeGreen)" stroke="#34d399" stroke-width="1.5"/>
-  <text x="244" y="357" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">SOL FND</text>
-  <text x="244" y="370" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" text-anchor="middle">WATCH</text>
-  <text x="244" y="383" font-family="'Courier New', monospace" font-size="8" fill="#fbbf24" text-anchor="middle">HOLD</text>
-
-  <!-- Wallet node 6: Anon Dev (bottom right) -->
-  <line x1="633" y1="348" x2="498" y2="282" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-  <circle cx="658" cy="362" r="34" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
-  <text x="658" y="357" font-family="'Courier New', monospace" font-size="9" fill="#94a3b8" text-anchor="middle">ANON</text>
-  <text x="658" y="370" font-family="'Courier New', monospace" font-size="9" fill="#94a3b8" text-anchor="middle">DEV</text>
-  <text x="658" y="383" font-family="'Courier New', monospace" font-size="8" fill="#ef4444" text-anchor="middle">SELL</text>
-
-  <!-- Legend / stats panel -->
-  <rect x="30" y="410" width="840" height="60" rx="8" fill="#0d0d20" stroke="#ffffff0a" stroke-width="1"/>
-  <text x="54" y="434" font-family="'Courier New', monospace" font-size="10" fill="#ffffff40">SIGNAL</text>
-  <text x="54" y="454" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#a78bfa">JUP BUY</text>
-
-  <text x="200" y="434" font-family="'Courier New', monospace" font-size="10" fill="#ffffff40">CONSENSUS</text>
-  <text x="200" y="454" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#4ade80">82%  STRONG</text>
-
-  <text x="420" y="434" font-family="'Courier New', monospace" font-size="10" fill="#ffffff40">WALLETS AGREEING</text>
-  <text x="420" y="454" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#ffffff">4 / 6  TRACKED</text>
-
-  <text x="640" y="434" font-family="'Courier New', monospace" font-size="10" fill="#ffffff40">TOTAL FLOW</text>
-  <text x="640" y="454" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#4ade80">$120,000 BUY</text>
-
-  <text x="450" y="488" font-family="'Courier New', monospace" font-size="9" fill="#ffffff20" text-anchor="middle">CHORUS  •  SMART MONEY CONSENSUS  •  POWERED BY CLAUDE</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" fill="none">
+  <rect width="960" height="520" fill="#EEF2F1"/>
+  <rect x="24" y="24" width="912" height="472" rx="26" fill="#F7FAF9" stroke="#CFD8D6"/>
+  <text x="56" y="72" fill="#223844" font-family="Arial, sans-serif" font-size="24" font-weight="700">Chorus // Cohort Consensus Map</text>
+  <text x="56" y="98" fill="#72828A" font-family="Arial, sans-serif" font-size="13">market makers, funds, teams, and traders aligned by token</text>
+  <circle cx="210" cy="220" r="58" fill="#DDEAF2" stroke="#90AEC0"/>
+  <text x="163" y="226" fill="#223844" font-family="Arial, sans-serif" font-size="18" font-weight="700">makers</text>
+  <circle cx="372" cy="160" r="54" fill="#E9E8D7" stroke="#BFAE7A"/>
+  <text x="338" y="166" fill="#223844" font-family="Arial, sans-serif" font-size="18" font-weight="700">funds</text>
+  <circle cx="372" cy="296" r="50" fill="#E8E0F1" stroke="#A48FBC"/>
+  <text x="345" y="302" fill="#223844" font-family="Arial, sans-serif" font-size="18" font-weight="700">teams</text>
+  <circle cx="540" cy="220" r="52" fill="#E1EFE6" stroke="#8DB498"/>
+  <text x="505" y="226" fill="#223844" font-family="Arial, sans-serif" font-size="18" font-weight="700">traders</text>
+  <circle cx="760" cy="220" r="84" fill="#203948" stroke="#63A6C0"/>
+  <text x="720" y="228" fill="#F4F8FB" font-family="Arial, sans-serif" font-size="28" font-weight="700">JUP</text>
+  <path d="M268 214 C324 200 340 194 678 214" stroke="#63A6C0" stroke-width="6" stroke-linecap="round"/>
+  <path d="M426 166 C520 176 616 190 678 208" stroke="#BFAE7A" stroke-width="6" stroke-linecap="round"/>
+  <path d="M422 290 C520 278 616 256 678 232" stroke="#A48FBC" stroke-width="6" stroke-linecap="round"/>
+  <path d="M592 220 C628 220 644 220 678 220" stroke="#8DB498" stroke-width="6" stroke-linecap="round"/>
+  <rect x="84" y="360" width="792" height="92" rx="18" fill="#EEF2F1" stroke="#CFD8D6"/>
+  <text x="108" y="392" fill="#223844" font-family="Arial, sans-serif" font-size="15" font-weight="700">Consensus Snapshot</text>
+  <text x="108" y="420" fill="#72828A" font-family="Arial, sans-serif" font-size="13">score 0.79</text>
+  <text x="228" y="420" fill="#72828A" font-family="Arial, sans-serif" font-size="13">wallets 4 / 8</text>
+  <text x="372" y="420" fill="#72828A" font-family="Arial, sans-serif" font-size="13">cohorts 4</text>
+  <text x="490" y="420" fill="#72828A" font-family="Arial, sans-serif" font-size="13">state broad conviction</text>
 </svg>
