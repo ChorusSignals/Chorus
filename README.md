@@ -2,19 +2,31 @@
 
 Cohort-consensus tracker for smart-money behavior on Solana.
 
-Chorus watches curated wallets, but it does not collapse them into one bucket. Market makers, funds, teams, and traders are scored separately so the system can tell the difference between broad conviction and a single cohort dragging the tape.
-That distinction matters because inventory skew from one cohort is not the same thing as market-wide agreement.
+See when smart money is actually aligned instead of just noisy in one pocket.
+
+`bun run dev`
+
+- watches makers, funds, teams, and traders as separate cohorts
+- ignores one-cohort inventory skew that looks bigger than it is
+- promotes tokens where multiple cohorts agree on direction at the same time
 
 [![Build](https://img.shields.io/github/actions/workflow/status/ChorusSignals/Chorus/ci.yml?branch=master&style=flat-square&label=Build)](https://github.com/ChorusSignals/Chorus/actions)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 
-## Consensus Map
+## Consensus Board
 
 ![Chorus consensus map](assets/preview-consensus.svg)
 
 ## Signal Feed
 
 ![Chorus signal feed](assets/preview-signals.svg)
+
+## Operating Surfaces
+
+- `Consensus Board`: shows whether conviction is broad or isolated to one cohort
+- `Signal Feed`: prints the actual names climbing the alignment stack
+- `Cohort Weighting`: ranks makers, funds, teams, and traders separately before blending
+- `Agreement Score`: converts wallet activity into a usable conviction state
 
 ## Technical Spec
 
@@ -58,6 +70,13 @@ npm run dev
 
 - [Commit sequence](docs/commit-sequence.md)
 - [Issue drafts](docs/issue-drafts.md)
+
+## Support Docs
+
+- [Runbook](docs/runbook.md)
+- [Changelog](CHANGELOG.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security](SECURITY.md)
 
 ## License
 
