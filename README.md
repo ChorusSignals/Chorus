@@ -28,6 +28,21 @@ See when smart money is actually aligned instead of just noisy in one pocket.
 - `Cohort Weighting`: ranks makers, funds, teams, and traders separately before blending
 - `Agreement Score`: converts wallet activity into a usable conviction state
 
+## Why Cohorts Stay Separate
+
+Chorus does not believe that "smart money" is one thing. Funds, makers, teams, and fast traders all behave differently, and collapsing them into one blended wallet list hides that difference.
+
+A maker leaning on inventory is not the same as broad cross-cohort agreement. Chorus exists to keep those cases separate until the market actually lines up.
+
+## Consensus States
+
+The board is easier to use when the operator can name the state:
+
+- `isolated`: one cohort is moving, everyone else is absent
+- `building`: two cohorts are starting to agree
+- `broad`: multiple cohorts are aligned on the same name and direction
+- `crowded`: agreement exists, but the move is too late to treat cleanly
+
 ## Technical Spec
 
 Chorus computes agreement in two layers:
@@ -55,6 +70,12 @@ Chorus computes agreement in two layers:
 `consensusScore = agreeingWeight / totalTrackedWeight`
 
 Signals strengthen when multiple cohorts align. A single cohort can still be useful, but broad cross-cohort agreement is treated as the higher-conviction state.
+
+## Why Chorus Works On Busy Days
+
+Wallet tracking becomes unreadable when every feed just dumps buys and sells into one stream. Chorus keeps the interpretation layer intact.
+
+That means the operator can tell the difference between real agreement and one noisy wallet pocket dragging attention around.
 
 ## Quick Start
 
