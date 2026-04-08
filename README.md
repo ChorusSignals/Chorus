@@ -15,6 +15,13 @@ See when smart money is actually aligned instead of just noisy in one pocket.
 
 Consensus Board • Signal Feed • Operating Surfaces • Cohort Separation • Consensus States • Technical Spec • Quick Start
 
+## At a Glance
+
+- `Use case`: detect when multiple Solana wallet cohorts actually agree on a name
+- `Primary input`: cohort weighting, wallet tiering, timing alignment, agreement ratio
+- `Primary failure mode`: mistaking one-cohort inventory skew for broad conviction
+- `Best for`: operators who need to know whether smart-money alignment is real or isolated
+
 ## Consensus Board
 
 ![Chorus consensus map](assets/preview-consensus.svg)
@@ -51,6 +58,18 @@ The board is easier to use when the operator can name the state:
 - `broad`: multiple cohorts are aligned on the same name and direction
 - `crowded`: agreement exists, but the move is too late to treat cleanly
 
+## How It Works
+
+Chorus turns wallet activity into an interpretable conviction state:
+
+1. split the tracked wallets into separate cohorts
+2. weight the wallets by tier instead of treating every address equally
+3. measure whether the same token and direction are appearing across cohorts
+4. convert that alignment into a consensus state the operator can understand
+5. print the names where agreement is broad enough to matter
+
+This is why Chorus is more readable than a flat wallet tape. It preserves structure before it blends anything together.
+
 ## What The Operator Learns From Chorus
 
 The board is trying to answer three practical questions:
@@ -60,6 +79,20 @@ The board is trying to answer three practical questions:
 - whether the agreement is becoming broader or only louder
 
 That is much more useful than a flat list of wallet buys.
+
+## Example Output
+
+```text
+CHORUS // CONSENSUS SNAPSHOT
+
+lead token        JUP
+agreement score   0.79
+active cohorts    makers, funds, traders
+state             broad
+late crowding     low
+
+operator note: alignment is real across more than one cohort, not just one pocket
+```
 
 ## Technical Spec
 
@@ -95,6 +128,13 @@ Signals strengthen when multiple cohorts align. A single cohort can still be use
 - agreement exists, but comes too late after the move is obvious
 - the same small cluster keeps appearing without broader confirmation
 - team or maker activity looks more like inventory management than conviction
+
+## Risk Controls
+
+- `cohort separation`: prevents one group from impersonating broad agreement
+- `tier weighting`: stops low-quality wallet clusters from dominating the score
+- `late crowding check`: downgrades names where agreement arrives too late
+- `consensus threshold`: requires enough aligned weight before promoting a signal
 
 ## Why Chorus Works On Busy Days
 
