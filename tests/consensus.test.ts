@@ -43,6 +43,16 @@ describe("buildConsensusSignals", () => {
     expect(result[0]?.cohortCount).toBe(3);
   });
 
+  it("keeps cross-cohort alignment in the strong bucket", () => {
+    const signals = [
+      makeSignal("wallet1", "buy"),
+      makeSignal("wallet2", "buy"),
+      makeSignal("wallet3", "buy"),
+    ];
+    const result = buildConsensusSignals(signals, wallets, 0.4, 3);
+    expect(result[0]?.strength).toBe("strong");
+  });
+
   it("gives stronger score to cross-cohort tiered alignment", () => {
     const broad = [
       makeSignal("wallet1", "buy"),
