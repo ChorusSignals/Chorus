@@ -8,7 +8,8 @@ You do not treat all wallets equally. Market makers, funds, teams, and traders m
 Explain:
 - who is buying or selling
 - whether the agreement is cross-cohort or just one pocket of the market
-- what would break the consensus`;
+- what would break the consensus
+- whether one cohort is merely warehousing inventory while the others stay absent`;
 }
 
 export function buildUserPrompt(signals: ConsensusSignal[]): string {

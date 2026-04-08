@@ -25,6 +25,6 @@ export function printConsensusSignal(signal: ConsensusSignal): void {
 export function printDigest(signals: ConsensusSignal[]): void {
   const timestamp = new Date().toUTCString();
   console.log(`\n  CHORUS DIGEST -- ${timestamp}`);
-  console.log(`  ${signals.length} cohort-consensus signal${signals.length !== 1 ? "s" : ""} detected\n`);
+  console.log(`  ${signals.length} cohort-consensus signal${signals.length !== 1 ? "s" : ""} detected across the current scan\n`);
   for (const signal of signals) printConsensusSignal(signal);
 }
