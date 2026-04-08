@@ -13,6 +13,8 @@ See when smart money is actually aligned instead of just noisy in one pocket.
 [![Build](https://img.shields.io/github/actions/workflow/status/ChorusSignals/Chorus/ci.yml?branch=master&style=flat-square&label=Build)](https://github.com/ChorusSignals/Chorus/actions)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 
+Consensus Board • Signal Feed • Operating Surfaces • Cohort Separation • Consensus States • Technical Spec • Quick Start
+
 ## Consensus Board
 
 ![Chorus consensus map](assets/preview-consensus.svg)
@@ -28,6 +30,12 @@ See when smart money is actually aligned instead of just noisy in one pocket.
 - `Cohort Weighting`: ranks makers, funds, teams, and traders separately before blending
 - `Agreement Score`: converts wallet activity into a usable conviction state
 
+## Why Wallet Tracking Usually Breaks Down
+
+Most wallet dashboards collapse all "smart money" into one stream. That looks useful until a single cohort dominates the tape and the board starts pretending there is broad agreement when there is not.
+
+Chorus avoids that mistake on purpose. It keeps funds, makers, teams, and traders separated long enough for the operator to see whether conviction is actually spreading or only echoing within one group.
+
 ## Why Cohorts Stay Separate
 
 Chorus does not believe that "smart money" is one thing. Funds, makers, teams, and fast traders all behave differently, and collapsing them into one blended wallet list hides that difference.
@@ -42,6 +50,16 @@ The board is easier to use when the operator can name the state:
 - `building`: two cohorts are starting to agree
 - `broad`: multiple cohorts are aligned on the same name and direction
 - `crowded`: agreement exists, but the move is too late to treat cleanly
+
+## What The Operator Learns From Chorus
+
+The board is trying to answer three practical questions:
+
+- who moved first
+- who confirmed the move after that
+- whether the agreement is becoming broader or only louder
+
+That is much more useful than a flat list of wallet buys.
 
 ## Technical Spec
 
@@ -70,6 +88,13 @@ Chorus computes agreement in two layers:
 `consensusScore = agreeingWeight / totalTrackedWeight`
 
 Signals strengthen when multiple cohorts align. A single cohort can still be useful, but broad cross-cohort agreement is treated as the higher-conviction state.
+
+## When Chorus Should Demote A Signal
+
+- only one cohort is active and everyone else is absent
+- agreement exists, but comes too late after the move is obvious
+- the same small cluster keeps appearing without broader confirmation
+- team or maker activity looks more like inventory management than conviction
 
 ## Why Chorus Works On Busy Days
 
