@@ -2,7 +2,7 @@
   <rect width="960" height="520" fill="#EEF2F1"/>
   <rect x="24" y="24" width="912" height="472" rx="26" fill="#F7FAF9" stroke="#CFD8D6"/>
   <text x="56" y="72" fill="#223844" font-family="Arial, sans-serif" font-size="24" font-weight="700">Chorus // Cohort Consensus Map</text>
-  <text x="56" y="98" fill="#72828A" font-family="Arial, sans-serif" font-size="13">market makers, funds, teams, and traders aligned by token</text>
+  <text x="56" y="98" fill="#72828A" font-family="Arial, sans-serif" font-size="13">market makers, funds, teams, and traders aligned by token and direction</text>
   <circle cx="210" cy="220" r="58" fill="#DDEAF2" stroke="#90AEC0"/>
   <text x="163" y="226" fill="#223844" font-family="Arial, sans-serif" font-size="18" font-weight="700">makers</text>
   <circle cx="372" cy="160" r="54" fill="#E9E8D7" stroke="#BFAE7A"/>
