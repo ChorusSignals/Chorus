@@ -6,15 +6,35 @@ import { logger } from "./lib/logger.js";
 async function main(): Promise<void> {
   const config = loadConfig();
   setLogLevel(config.LOG_LEVEL);
-  logger.info("Chorus starting — smart money consensus tracker");
-  logger.info(`Poll interval: ${config.POLL_INTERVAL_MS / 1000}s | Min consensus: ${config.MIN_CONSENSUS_SCORE} | Min wallets: ${config.MIN_WALLETS_AGREEING}`);
+  logger.info("Chorus starting - smart money consensus tracker");
+  logger.info(
+    `Poll interval: ${config.POLL_INTERVAL_MS / 1000}s | Min consensus: ${config.MIN_CONSENSUS_SCORE} | Min wallets: ${config.MIN_WALLETS_AGREEING}`,
+  );
 
   async function poll(): Promise<void> {
-    try { await runAgentLoop(config); } catch (err) { logger.error("Poll error:", err); }
+    const startedAt = Date.now();
+
+    try {
+      await runAgentLoop(config);
+    } catch (err) {
+      logger.error("Poll error:", err);
+    } finally {
+      const durationMs = Date.now() - startedAt;
+      logger.info("Consensus poll complete", { durationMs });
+    }
   }
 
-  await poll();
-  setInterval(poll, config.POLL_INTERVAL_MS);
+  const runLoop = async (): Promise<void> => {
+    await poll();
+    setTimeout(() => {
+      void runLoop();
+    }, config.POLL_INTERVAL_MS);
+  };
+
+  await runLoop();
 }
 
-main().catch((err) => { console.error("Fatal:", err); process.exit(1); });
+main().catch((err) => {
+  console.error("Fatal:", err);
+  process.exit(1);
+});
