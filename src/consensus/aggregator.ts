@@ -39,8 +39,10 @@ export function buildConsensusSignals(
   minScore: number,
   minWallets: number
 ): ConsensusSignal[] {
+  const trackedWallets = new Set(wallets.map((wallet) => wallet.address));
   const byMint = new Map<string, WalletSignal[]>();
   for (const signal of allSignals) {
+    if (!trackedWallets.has(signal.walletAddress)) continue;
     const grouped = byMint.get(signal.mint) ?? [];
     grouped.push(signal);
     byMint.set(signal.mint, grouped);

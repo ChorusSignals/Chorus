@@ -33,6 +33,14 @@ describe("buildConsensusSignals", () => {
     expect(result).toHaveLength(0);
   });
 
+  it("does not let untracked wallets satisfy agreement minimums", () => {
+    const signals = [
+      makeSignal("wallet1", "buy"),
+      { ...makeSignal("wallet1", "buy"), walletAddress: "unknown-wallet", walletLabel: "Unknown" },
+    ];
+    expect(buildConsensusSignals(signals, wallets, 0.1, 2)).toHaveLength(0);
+  });
+
   it("captures cohort count when enough wallets agree", () => {
     const signals = [
       makeSignal("wallet1", "buy"),
