@@ -28,10 +28,6 @@ Consensus Board • Signal Feed • Operating Surfaces • Cohort Separation •
 
 Live operating view for Chorus: lead token consensus card, four cohort sectors with active and idle smart-money wallets (makers, funds, teams, traders), signal feed, token board, guardrails, and the agent's current ISOLATED, BUILDING, BROAD, or CROWDED state.
 
-## Signal Feed
-
-![Chorus signal feed](assets/preview-signals.svg)
-
 ## Operating Surfaces
 
 - `Consensus Board`: shows whether conviction is broad or isolated to one cohort
