@@ -22,9 +22,11 @@ Consensus Board • Signal Feed • Operating Surfaces • Cohort Separation •
 - `Primary failure mode`: mistaking one-cohort inventory skew for broad conviction
 - `Best for`: operators who need to know whether smart-money alignment is real or isolated
 
-## Consensus Board
+## Live Agreement Wall
 
-![Chorus consensus map](assets/preview-consensus.svg)
+<img src="assets/preview-main.png" alt="Chorus Live Agreement Wall" width="100%" />
+
+Live operating view for Chorus: lead token consensus card, four cohort sectors with active and idle smart-money wallets (makers, funds, teams, traders), signal feed, token board, guardrails, and the agent's current ISOLATED, BUILDING, BROAD, or CROWDED state.
 
 ## Signal Feed
 
